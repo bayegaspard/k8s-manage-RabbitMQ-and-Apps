@@ -1,0 +1,138 @@
+{
+  "users":[
+   {  
+     "name": "guest",
+     "password": "guest",
+     "tags":"administrator"    
+    },
+{  
+     "name": "baye",
+     "password": "baye",
+     "tags":"administrator"    
+    }
+ ],
+
+    "vhosts":[ 
+  
+{  
+     "name": "/"
+    } 
+ ],
+
+    "permisions":[ 
+   
+{  
+     "user": "guest",
+     "vhost": "/",
+     "configure" : "*",
+     "write" : ".*",
+     "read" : ".*"
+
+    } 
+ ],
+
+   
+   "parameters": [],
+   "policies": [],
+   "exchanges": [{
+  
+         "name": "baye.exchange",
+         "vhost": "/",
+         "type":"fanout" ,
+         "durable": "true",
+         "auto_delete": "false",
+         "internals":"false" ,
+         "arguments": {}
+     
+  
+ }],
+
+   "queues":[{
+
+          "name": "baye.furry",
+         "vhost": "/",
+         "type":"fanout" , 
+         "durable": "true",
+         "auto_delete": "false",
+         "internals":"false" ,
+         "arguments": {}
+},
+ 
+
+  {
+
+          "name": "baye.tall",
+         "vhost": "/",
+         "type":"fanout" , 
+         "durable": "true",
+         "auto_delete": "false",
+         "internals":"false" ,
+         "arguments": {}
+
+
+
+
+  
+},
+
+
+
+  {
+
+          "name": "baye.chubby",
+         "vhost": "/",
+         "type":"fanout" , 
+         "durable": "true",
+         "auto_delete": "false",
+         "internals":"false" ,
+         "arguments": {}
+
+
+
+
+
+
+
+
+}],
+
+  "bindings": [
+        
+       {
+          "source": "baye.exchange",
+          "vhost": "/",
+          "destination":"baye.furry",
+          "destination_type": "queue",
+          "routing_key" : "baye.furry.#",
+           "arguments": {}
+
+
+
+     },
+  
+     {
+          "source": "baye.exchange",
+          "vhost": "/",
+          "destination":  "baye.tall",
+          "destination_type": "queue",
+          "routing_key" : "baye.tall.#",
+           "arguments": {}
+    
+
+     }, 
+
+     {
+          "source": "baye.exchange",
+          "vhost": "/",
+          "destination":  "baye.chubby",
+          "destination_type": "queue",
+          "routing_key" : "baye.chubby.#",
+           "arguments": {}
+
+
+
+     } 
+     ]
+
+
+}
