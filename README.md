@@ -27,6 +27,12 @@ docker-compose --version
 ```
 docker-compose up -d
 ```
+### Buikd a docker image.
+- There are two python docker files; for consumer and for producer as seen in the github page.To build and image we use the following command:
+```
+docker build -t <file name> .
+
+```
 ### Rabbitmq
 - We set up rabbit mq according to the different configuration files, definitions and docker files proposed by the official link provied.See github page for the codes.
 - We have our rabbitq app running and python scripts functional as seen from the screenshot below:
