@@ -1,0 +1,8 @@
+FROM python:3
+
+ADD cons.py /
+
+RUN pip3 install pika
+RUN pip3 install psycopg2.binary
+
+CMD [ "python3", "./cons.py" ]
