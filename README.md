@@ -277,4 +277,5 @@ kubectl describe service nginx-service
 - https://www.postgresqltutorial.com/postgresql-create-table/
 - https://www.tutorialspoint.com/postgresql/postgresql_create_table.htm
 - https://stackoverflow.com/questions/12906351/importerror-no-module-named-psycopg2#23104715
-- https://www.howtoforge.com/tutorial/how-to-install-kubernetes-on-ubuntu/
+- https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
+- https://ubuntu.com/kubernetes/install
