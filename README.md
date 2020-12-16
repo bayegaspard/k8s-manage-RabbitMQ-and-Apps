@@ -23,27 +23,66 @@ docker-compose --version
 - I will create a rabbitmq docker yaml file.
 - We create a script for the message creator and message consumer using python
 - see code in github [here](https://github.com/BAYEGASPARD/k8s-manage-RabbitMQ-and-Apps) asn `cons.py` and `producer.py`.
-- After running the command : 
+- Note that the source code of this [cons.py](https://github.com/BAYEGASPARD/k8s-manage-RabbitMQ-and-Apps/blob/main/cons.py) there is a function which deal with the message type as well as functions , `db()` and `db2()`to insert on a specific database table namely `int_tbl` and `string_tbl`.
+```
+
+def callback(ch, method, properties, body):
+    body = body.decode('utf-8')
+    print(f'{body} is received')
+#    messages = []
+    messages.append(body)
+    print(messages)
+
+    for message in messages:
+       #print(message)
+       if message==23:
+           print("int")
+           db2()
+           
+       elif message == "Test":
+           print ("string")
+           db()
+```
+
+
+- There are two python docker files; for consumer and for producer as seen in the github page.To build and image we use the following command:
+
+- Sample files can be seen from the picture below.
+![](https://i.imgur.com/qJhBTWV.png)
+![](https://i.imgur.com/DB1J2W4.png)
+![](https://i.imgur.com/4OkjZyK.png)
+
+- We use the command below to make our container detached using the `d` argument. For convinience, I created two docker files, one for consumer and one for Producer as seen in the github page provided.
 ```
 docker-compose up -d
 ```
-### Buikd a docker image.
-- There are two python docker files; for consumer and for producer as seen in the github page.To build and image we use the following command:
 ```
 docker build -t <file name> .
 
 ```
+- I created a docker hub account and created a new repo.
+![](https://i.imgur.com/Se1PWs0.png)
+- We can use the following commands to publish using the terminal.
+```
+docker tag bitnami/rabbitmq:tagname new-repo:tagname
+docker push d0k3r200/rabbitmq:tagname
+```
+- I think the one in github is sufficient.
 ### Rabbitmq
 - We set up rabbit mq according to the different configuration files, definitions and docker files proposed by the official link provied.See github page for the codes.
 - We have our rabbitq app running and python scripts functional as seen from the screenshot below:
 ![](https://i.imgur.com/3XPYrvR.png)
 - After testing we can see that our rabit mq accept and queus messages as well.
 ![](https://i.imgur.com/Kxn2nzA.png)
-- Next we check if this container is running:
-![](https://i.imgur.com/2FmIzwa.png)
+
 - we can now test our python scripts for consumer and producer.
 ![](https://i.imgur.com/Wp3i8Za.png)
 - Now let's I decided to create 3 containers one database, one message creator and one message consumer and write to the database.Source code can be found in the github link shared above.
+- Lets check our 3 containers as well : 
+![](https://i.imgur.com/fWEyaYU.png)
+
+# Step 1 - Kubeadm Installation
+- I also did some other techniques which I used networking to do it.
 - Settings :
  ```
         10.0.15.10  k8s-master
@@ -52,7 +91,6 @@ docker build -t <file name> .
         10.0.15.23  worker03 (rabbitmq )
     Root privileges
  ```
-# Step 1 - Kubeadm Installation
 ### Setup Hosts
 - We edit the virtual hosts to have the different networking for the different applications so they can communicate and the k8s master can reach  them since they need to be on the same network.
 ```
