@@ -1,6 +1,6 @@
 # Advance Total virtualization
 - All files can be found in the following [github repo](https://github.com/BAYEGASPARD/k8s-manage-RabbitMQ-and-Apps), including Dockerfile, docker-compose.yml, and all related files.
-### Lab Docker and K8s
+### Docker and K8s
 - Refer to the following set-up for the lab.
 ![](https://i.imgur.com/8viylxB.png)
 ### Installing docker compose
